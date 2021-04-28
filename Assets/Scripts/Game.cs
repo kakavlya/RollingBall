@@ -6,7 +6,7 @@ public class Game : MonoBehaviour
 {
     [SerializeField] private Ball _ball;
     [SerializeField] private ObstacleGenerator _obstacleGenerator;
-    [SerializeField] private CoinLinesGenerator _coinLineGenerator;
+    [SerializeField] private CoinsGenerator _coinLineGenerator;
     [SerializeField] private StartScreen _startScreen;
     [SerializeField] private GameOverScreen _gameOverScreen;
 

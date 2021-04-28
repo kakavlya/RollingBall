@@ -17,7 +17,7 @@ public class Ball : MonoBehaviour
         _mover = GetComponent<BallMover>();
     }
 
-    public void IncreaseScore()
+    public void AddScore()
     {
         _score++;
         ScoreChanged?.Invoke(_score);

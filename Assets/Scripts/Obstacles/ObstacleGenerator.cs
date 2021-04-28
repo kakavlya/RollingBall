@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleGenerator : ObjectPool
+public class ObstacleGenerator : GameObjectsGenerator
 {
     [SerializeField] private GameObject _template;
     [SerializeField] private float _secondsBetweenSpawn;

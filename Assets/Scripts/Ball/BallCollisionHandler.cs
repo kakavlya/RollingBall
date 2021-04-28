@@ -16,7 +16,7 @@ public class BallCollisionHandler : MonoBehaviour
     {
         if (other.TryGetComponent(out ScoreCollider scoreCollider))
         {
-            _ball.IncreaseScore();
+            _ball.AddScore();
         }
         else
         {
