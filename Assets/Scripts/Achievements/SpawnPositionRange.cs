@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 public class SpawnPositionRange: MonoBehaviour
 {
         [SerializeField] private float _maxSpawnYPos;
@@ -15,5 +17,16 @@ public class SpawnPositionRange: MonoBehaviour
         public float MinSpawnYPos { get => _minSpawnYPos; }
         public int MinItemsInLine { get => _minItemsInLine; }
         public int MaxItemsInLine { get => _maxItemsInLine; }
+
+    public int GetRandNumsLine()
+    {
+        return Random.Range(_minItemsInLine, _maxItemsInLine);
+    }
+
+    public float GetRandSpawnPos()
+    {
+        return Random.Range(MinSpawnYPos, MaxSpawnYPos);
+    }
 }
+
 

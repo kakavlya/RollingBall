@@ -7,9 +7,10 @@ public class CoinsGenerator : GameObjectsGenerator
 {
     [SerializeField] private GameObject _template;
     [SerializeField] private float _secondsBetweenSpawn;
-    private SpawnPositionRange _range;
 
+    private SpawnPositionRange _range;
     private float _elapsedTime = 0;
+
     private void Awake()
     {
         Initialize(_template);
@@ -29,8 +30,8 @@ public class CoinsGenerator : GameObjectsGenerator
 
     private void GenerateCoinsLine()
     {
-        int numbersInLine = Random.Range(_range.MinItemsInLine, _range.MaxItemsInLine);
-        float spawnPositionY = Random.Range(_range.MinSpawnYPos, _range.MaxSpawnYPos);
+        int numbersInLine = _range.GetRandNumsLine();
+        float spawnPositionY = _range.GetRandSpawnPos();
         float currentXPosition = transform.position.x;
 
         for (int i = 0; i < numbersInLine; i++)

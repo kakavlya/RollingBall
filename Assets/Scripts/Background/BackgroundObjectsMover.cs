@@ -10,10 +10,7 @@ public class BackgroundObjectsMover : MonoBehaviour
 
     private void Update()
     {
-        var newPositionX = transform.position.x + _speed * Time.deltaTime;
-        var newPositionY = transform.position.y;
-        transform.position = new Vector2(newPositionX, newPositionY);
-
+        transform.Translate(Vector3.right * _speed * Time.deltaTime);
         if (transform.position.x < _leftWaypointXposition)
             transform.position = new Vector2(_rightWaypointXposition, transform.position.y);
     }

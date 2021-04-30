@@ -7193,7 +7193,7 @@ MonoBehaviour:
   _maxSpawnYPos: -0.5
   _minSpawnYPos: -1.5
   _minItemsInLine: 3
-  _maxItemsInLine: 5
+  _maxItemsInLine: 6
 --- !u!1 &1142706447
 GameObject:
   m_ObjectHideFlags: 0
