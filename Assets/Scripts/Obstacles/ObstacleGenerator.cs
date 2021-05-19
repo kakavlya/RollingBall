@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleGenerator : GameObjectsGenerator
+public class ObstacleGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject _template;
     [SerializeField] private float _secondsBetweenSpawn;
     [SerializeField] private float _maxSpawnPosition;
     [SerializeField] private float _minSpawnPosition;
+    [SerializeField] private GameObject _container;
+    [SerializeField] private int _capacity;
 
+    private GameObjectsPool _objectPools;
     private float _elapsedTime = 0;
 
     private void Awake()
     {
-        Initialize(_template);
+        _objectPools = new GameObjectsPool();
+        _objectPools.Initialize(_template, _capacity, _container);
     }
 
     private void Update()
@@ -22,7 +26,7 @@ public class ObstacleGenerator : GameObjectsGenerator
 
         if(_elapsedTime >= _secondsBetweenSpawn)
         {
-            if(TryGetObject(out GameObject spawnedObject))
+            if(_objectPools.TryGetObject(out GameObject spawnedObject))
             {
                 _elapsedTime = 0;
                 SpawnObject(spawnedObject);
@@ -37,6 +41,11 @@ public class ObstacleGenerator : GameObjectsGenerator
         spawnedObject.SetActive(true);
         spawnedObject.transform.position = spawnPosition;
 
-        DisableObjectAbroadTheScreen();
+        _objectPools.DisableObjectAbroadTheScreen();
+    }
+
+    public void ResetPool()
+    {
+        _objectPools.ResetPool();
     }
 }

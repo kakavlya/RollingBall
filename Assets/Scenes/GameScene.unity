@@ -460,7 +460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ball: {fileID: 1572206474}
   _obstacleGenerator: {fileID: 1720578553}
-  _coinLineGenerator: {fileID: 1034467733}
+  _coinLineGenerator: {fileID: 0}
   _startScreen: {fileID: 898719260}
   _gameOverScreen: {fileID: 979188158}
 --- !u!20 &519420031
@@ -7137,8 +7137,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1034467732}
-  - component: {fileID: 1034467733}
   - component: {fileID: 1034467734}
+  - component: {fileID: 1034467733}
   m_Layer: 0
   m_Name: CoinsSpawner
   m_TagString: Untagged
@@ -7173,11 +7173,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1aa797ca16a0c841bf7e839dfe3006a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 196360024}
-  _capacity: 500
   _template: {fileID: 7409880184963799278, guid: edf907689919369448602ef810078a54,
     type: 3}
-  _secondsBetweenSpawn: 2.5
+  _container: {fileID: 196360024}
+  _capacity: 500
+  _secondsBetweenSpawn: 3
+  _maxSpawnYPos: -0.5
+  _minSpawnYPos: -1.5
+  _minItemsInLine: 3
+  _maxItemsInLine: 6
 --- !u!114 &1034467734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8140,13 +8144,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66cc201048660c4ea809909fdf14396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 1331814008}
-  _capacity: 50
   _template: {fileID: 6243599795214128358, guid: 786822dbb1c625e49a6d70fb4a8cc915,
     type: 3}
   _secondsBetweenSpawn: 2
   _maxSpawnPosition: -4.2
   _minSpawnPosition: -4.2
+  _container: {fileID: 1331814008}
+  _capacity: 50
 --- !u!1 &2035681252
 GameObject:
   m_ObjectHideFlags: 0

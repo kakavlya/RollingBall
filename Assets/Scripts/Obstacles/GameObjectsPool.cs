@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public abstract class GameObjectsGenerator : MonoBehaviour
+public class GameObjectsPool : MonoBehaviour
 {
-    [SerializeField]private GameObject _container;
-    [SerializeField]private int _capacity;
-
+    private GameObject _container;
+    private int _capacity;
     private Camera _camera;
 
     private List<GameObject> _pool = new List<GameObject>();
 
-    protected void Initialize(GameObject prefab)
+    public void Initialize(GameObject prefab, int capacity, GameObject container)
     {
-        _camera = Camera.main;
+        this._camera = Camera.main;
+        this._capacity = capacity;
+        this._container = container;
 
         for(int i =0; i < _capacity; i++)
         {
@@ -25,7 +26,7 @@ public abstract class GameObjectsGenerator : MonoBehaviour
         }
     }
 
-    protected void DisableObjectAbroadTheScreen()
+    public void DisableObjectAbroadTheScreen()
     {
         Vector3 disablePoint = _camera.ViewportToWorldPoint(new Vector2(0, 0.5f));
         foreach (var item in _pool)
@@ -41,7 +42,7 @@ public abstract class GameObjectsGenerator : MonoBehaviour
         }
     }
 
-    protected bool TryGetObject(out GameObject result)
+    public bool TryGetObject(out GameObject result)
     {
         result = _pool.FirstOrDefault(p => p.activeSelf == false);
         return result != null;

@@ -2,19 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpawnPositionRange))]
-public class CoinsGenerator : GameObjectsGenerator
+public class CoinsGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject _template;
+    [SerializeField] private GameObject _container;
+    [SerializeField] private int _capacity;
     [SerializeField] private float _secondsBetweenSpawn;
+    [SerializeField] private float _maxSpawnYPos;
+    [SerializeField] private float _minSpawnYPos;
+    [SerializeField] private int _minItemsInLine;
+    [SerializeField] private int _maxItemsInLine;
 
-    private SpawnPositionRange _range;
+    private Range _yPosRange;
+    private Range _coinsRange;
     private float _elapsedTime = 0;
+    private GameObjectsPool _objectPools;
 
     private void Awake()
     {
-        Initialize(_template);
-        _range = GetComponent<SpawnPositionRange>();
+        _objectPools = new GameObjectsPool();
+        _objectPools.Initialize(_template, _capacity, _container);
+        _yPosRange = new Range(_minSpawnYPos, _maxSpawnYPos);
+        _coinsRange = new Range(_minItemsInLine, _maxItemsInLine);
     }
 
     private void Update()
@@ -30,13 +39,13 @@ public class CoinsGenerator : GameObjectsGenerator
 
     private void GenerateCoinsLine()
     {
-        int numbersInLine = _range.GetRandNumsLine();
-        float spawnPositionY = _range.GetRandSpawnPos();
+        int numbersInLine = (int)_coinsRange.GetRandInRange();
+        float spawnPositionY = _yPosRange.GetRandInRange();
         float currentXPosition = transform.position.x;
 
         for (int i = 0; i < numbersInLine; i++)
         {
-            if (TryGetObject(out GameObject spawnedObject))
+            if (_objectPools.TryGetObject(out GameObject spawnedObject))
             {
                 SpawnObject(spawnedObject, currentXPosition, spawnPositionY);
                 currentXPosition += 0.9f;
@@ -50,6 +59,11 @@ public class CoinsGenerator : GameObjectsGenerator
         spawnedObject.SetActive(true);
         spawnedObject.transform.position = spawnPosition;
 
-        DisableObjectAbroadTheScreen();
+        _objectPools.DisableObjectAbroadTheScreen();
+    }
+
+    public void ResetPool()
+    {
+        _objectPools.ResetPool();
     }
 }

@@ -14,7 +14,7 @@ public class BallCollisionHandler : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out ScoreCollider scoreCollider))
+        if (other.TryGetComponent(out Pickable pickable))
         {
             _ball.AddScore();
         }

@@ -5,14 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-class GroundCheckParams:MonoBehaviour
+class GroundedCheck: MonoBehaviour
 {
     [SerializeField] private float _groundCheckRadius = 2f;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private Transform _groundCheck;
 
-    public float GroundCheckRadius { get => _groundCheckRadius; }
-    public LayerMask GroundLayer { get => _groundLayer; }
-    public Transform GroundCheck { get => _groundCheck; }
+    public bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(_groundCheck.position, _groundCheckRadius, _groundLayer);
+    }
 }
 

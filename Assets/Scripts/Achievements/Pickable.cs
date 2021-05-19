@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreCollider : MonoBehaviour
+public class Pickable : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
