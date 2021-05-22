@@ -2,19 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Range 
+public class Range : MonoBehaviour
 {
-    private float _minNum;
-    private float _maxNum;
+    [SerializeField] private float _min;
+    [SerializeField] private float _max;
 
-    public Range(float minNum, float maxNum)
+    public float Next()
     {
-        _minNum = minNum;
-        _maxNum = maxNum;
-    }
-
-    public float GetRandInRange()
-    {
-        return Random.Range(_minNum, _maxNum);
+        return Random.Range(_min, _max);
     }
 }

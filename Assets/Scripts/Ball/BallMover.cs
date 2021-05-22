@@ -34,7 +34,5 @@ public class BallMover: MonoBehaviour
     {
         _body.position = _startPosition;
         _body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionX;
-    }
-
-    
+    } 
 }

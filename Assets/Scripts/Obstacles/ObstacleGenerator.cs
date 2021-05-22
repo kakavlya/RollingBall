@@ -2,22 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(GameObjectsPool))]
 public class ObstacleGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject _template;
     [SerializeField] private float _secondsBetweenSpawn;
     [SerializeField] private float _maxSpawnPosition;
     [SerializeField] private float _minSpawnPosition;
-    [SerializeField] private GameObject _container;
-    [SerializeField] private int _capacity;
 
     private GameObjectsPool _objectPools;
     private float _elapsedTime = 0;
 
     private void Awake()
     {
-        _objectPools = new GameObjectsPool();
-        _objectPools.Initialize(_template, _capacity, _container);
+        _objectPools = GetComponent<GameObjectsPool>();
+        _objectPools.Initialize();
     }
 
     private void Update()
@@ -44,7 +42,7 @@ public class ObstacleGenerator : MonoBehaviour
         _objectPools.DisableObjectAbroadTheScreen();
     }
 
-    public void ResetPool()
+    public void Reset()
     {
         _objectPools.ResetPool();
     }

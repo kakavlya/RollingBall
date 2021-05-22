@@ -2,28 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(GameObjectsPool))]
 public class CoinsGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject _template;
-    [SerializeField] private GameObject _container;
-    [SerializeField] private int _capacity;
     [SerializeField] private float _secondsBetweenSpawn;
-    [SerializeField] private float _maxSpawnYPos;
-    [SerializeField] private float _minSpawnYPos;
-    [SerializeField] private int _minItemsInLine;
-    [SerializeField] private int _maxItemsInLine;
-
-    private Range _yPosRange;
-    private Range _coinsRange;
+    [SerializeField] private Range _yPosRange;
+    [SerializeField] private Range _coinsRange;
     private float _elapsedTime = 0;
     private GameObjectsPool _objectPools;
 
     private void Awake()
     {
-        _objectPools = new GameObjectsPool();
-        _objectPools.Initialize(_template, _capacity, _container);
-        _yPosRange = new Range(_minSpawnYPos, _maxSpawnYPos);
-        _coinsRange = new Range(_minItemsInLine, _maxItemsInLine);
+        _objectPools = GetComponent<GameObjectsPool>();
+        _objectPools.Initialize();
     }
 
     private void Update()
@@ -39,8 +30,8 @@ public class CoinsGenerator : MonoBehaviour
 
     private void GenerateCoinsLine()
     {
-        int numbersInLine = (int)_coinsRange.GetRandInRange();
-        float spawnPositionY = _yPosRange.GetRandInRange();
+        int numbersInLine = (int)_coinsRange.Next();
+        float spawnPositionY = _yPosRange.Next();
         float currentXPosition = transform.position.x;
 
         for (int i = 0; i < numbersInLine; i++)
@@ -62,7 +53,7 @@ public class CoinsGenerator : MonoBehaviour
         _objectPools.DisableObjectAbroadTheScreen();
     }
 
-    public void ResetPool()
+    public void Reset()
     {
         _objectPools.ResetPool();
     }

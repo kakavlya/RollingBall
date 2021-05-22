@@ -5,21 +5,20 @@ using UnityEngine;
 
 public class GameObjectsPool : MonoBehaviour
 {
-    private GameObject _container;
-    private int _capacity;
+    [SerializeField] private GameObject _template;
+    [SerializeField] private GameObject _container;
+    [SerializeField] private int _capacity;
     private Camera _camera;
 
     private List<GameObject> _pool = new List<GameObject>();
 
-    public void Initialize(GameObject prefab, int capacity, GameObject container)
+    public void Initialize()
     {
         this._camera = Camera.main;
-        this._capacity = capacity;
-        this._container = container;
 
         for(int i =0; i < _capacity; i++)
         {
-            GameObject spawned = Instantiate(prefab, _container.transform);
+            GameObject spawned = Instantiate(_template, _container.transform);
             spawned.SetActive(false);
 
             _pool.Add(spawned);

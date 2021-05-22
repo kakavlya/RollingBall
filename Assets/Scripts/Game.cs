@@ -40,8 +40,8 @@ public class Game : MonoBehaviour
     private void OnRestartButtonClick()
     {
         _gameOverScreen.Close();
-        _obstacleGenerator.ResetPool();
-        _coinLineGenerator.ResetPool();
+        _obstacleGenerator.Reset();
+        _coinLineGenerator.Reset();
         StartGame();
     }
 
