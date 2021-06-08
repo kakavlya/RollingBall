@@ -7333,10 +7333,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1034467732}
-  - component: {fileID: 1034467733}
   - component: {fileID: 1034467734}
   - component: {fileID: 1034467736}
   - component: {fileID: 1034467735}
+  - component: {fileID: 1034467733}
   m_Layer: 0
   m_Name: CoinsSpawner
   m_TagString: Untagged
@@ -7416,8 +7416,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba2b38f09eff3b4593ee8898a490436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _min: -1
-  _max: -0.1
+  _min: -1.2
+  _max: -0.3
 --- !u!1 &1084477849
 GameObject:
   m_ObjectHideFlags: 0
@@ -8467,7 +8467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _secondsBetweenSpawn: 2
-  _maxSpawnPosition: -4.2
+  _maxSpawnPosition: -4
   _minSpawnPosition: -4.2
 --- !u!114 &1720578554
 MonoBehaviour:
